@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-int		ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ char	*ft_strchr(const char *s, int c)
 
 	i = 0;
 	if (!s)
-		return(NULL);
+		return (NULL);
 	while (s[i])
 	{
 		if (s[i] == (unsigned char)c)
