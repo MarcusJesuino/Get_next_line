@@ -6,7 +6,7 @@
 /*   By: masantos <masantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:35:57 by masantos          #+#    #+#             */
-/*   Updated: 2025/08/04 16:35:57 by masantos         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:59:22 by masantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*get_line(char *stash)
 		i++;
 	if (stash[i] == '\n')
 		i++;
-	line = (char *)malloc(sizeof(char) * (i + 1));
+	line = (char *)malloc(sizeof(char) * (i + 2));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -93,7 +93,7 @@ char	*get_line(char *stash)
 	}
 	if (stash[i] == '\n')
 		line[i] = stash[i];
-	line[++i] = '\0';
+	line[i + 1] = '\0';
 	return (line);
 }
 
