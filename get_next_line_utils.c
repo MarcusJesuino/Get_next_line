@@ -44,30 +44,28 @@ char	*ft_strchr(const char *s, int c)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	idx_a;
-	size_t	idx_b;
-	char	*s_join;
+	size_t	i;
+	size_t	j;
+	char	*join;
 
 	if (!s1 && !s2)
 		return (NULL);
-	idx_a = 0;
-	idx_b = 0;
-	s_join = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!s_join)
+	if (!s1)
+		ft_strdup(s2);
+	if (!s2)
+		ft_strdup(s1);
+	i = 0;
+	j = 0;
+	join = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!join)
 		return (NULL);
-	if (s1)
-	{
-		while (s1[idx_a])
-			s_join[idx_b++] = s1[idx_a++];
-	}
-	idx_a = 0;
-	if (s2)
-	{
-		while (s2[idx_a])
-			s_join[idx_b++] = s2[idx_a++];
-	}
-	s_join[idx_b] = '\0';
-	return (s_join);
+	while (s1[i])
+		join[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		join[j++] = s2[i++];
+	join[j] = '\0';
+	return (join);
 }
 
 char	*get_line(char *stash)

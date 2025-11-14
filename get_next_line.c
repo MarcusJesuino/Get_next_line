@@ -12,6 +12,26 @@
 
 #include "get_next_line.h"
 
+char	*ft_strdup(const char *s)
+{
+	char	*dup;
+	int		i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	dup = malloc(ft_strlen(s) + 1);
+	if (!dup)
+		return (NULL);
+	while (s[i])
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
 char	*free_stash(char **stash)
 {
 	if (stash && *stash)
@@ -20,21 +40,6 @@ char	*free_stash(char **stash)
 		*stash = NULL;
 	}
 	return (NULL);
-}
-
-void	*ft_memset(void *s1, int c, size_t n)
-{
-	size_t			i;
-	unsigned char	*ptr;
-
-	ptr = (unsigned char *)s1;
-	i = 0;
-	while (i < n)
-	{
-		ptr[i] = (unsigned char)c;
-		i++;
-	}
-	return (s1);
 }
 
 char	*get_next_line(int fd)
@@ -48,7 +53,6 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	bytes = 1;
-	ft_memset(stash, 0, sizeof(stash));
 	while (!ft_strchr(stash, '\n') && bytes > 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);

@@ -17,6 +17,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+char	*ft_strdup(const char *s);
+
 char	*ft_strchr(const char *s, int c);
 
 char	*ft_strjoin(char const *s1, char const *s2);
