@@ -42,28 +42,48 @@ char	*free_stash(char **stash)
 	return (NULL);
 }
 
+
+void    bzero(void *s, size_t n)
+{
+    size_t          i;
+    unsigned char   *p;
+
+    p = (unsigned char *)s;
+    i = 0;
+    while (i < n)
+    {
+        p[i] = 0;
+        i++;
+    }
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*stash;
 	char		*line;
 	char		*tmp;
-	char		buffer[BUFFER_SIZE + 1];
+	static char		buffer[BUFFER_SIZE + 1];
 	ssize_t		bytes;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	bytes = 1;
-	while (!ft_strchr(stash, '\n') && bytes > 0)
+	bzero(&buffer, sizeof(buffer));
+	while ((ft_strchr(stash, '\n') == NULL) && bytes != 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if (bytes < 0)
-			return (free_stash(&stash));
+		{
+			free(stash);
+			stash = NULL;
+			return NULL;
+		}
 		buffer[bytes] = '\0';
 		tmp = stash;
 		stash = ft_strjoin(stash, buffer);
 		free (tmp);
 	}
-	line = get_line(stash);
+	line = get_line1(stash);
 	tmp = stash;
 	stash = get_remainder(tmp);
 	free(tmp);

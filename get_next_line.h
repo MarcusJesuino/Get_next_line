@@ -23,7 +23,7 @@ char	*ft_strchr(const char *s, int c);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 
-char	*get_line(char *stash);
+char	*get_line1(char *stash);
 
 char	*get_remainder(char *stash);
 

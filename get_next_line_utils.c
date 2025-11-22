@@ -51,9 +51,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1)
-		ft_strdup(s2);
+		return (ft_strdup(s2));
 	if (!s2)
-		ft_strdup(s1);
+		return (ft_strdup(s1));
 	i = 0;
 	j = 0;
 	join = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
@@ -68,7 +68,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (join);
 }
 
-char	*get_line(char *stash)
+char	*get_line1(char *stash)
 {
 	int		i;
 	char	*line;
@@ -80,7 +80,7 @@ char	*get_line(char *stash)
 		i++;
 	if (stash[i] == '\n')
 		i++;
-	line = (char *)malloc(sizeof(char) * (i + 2));
+	line = (char *)malloc(sizeof(char) * (i + 1));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -90,34 +90,27 @@ char	*get_line(char *stash)
 		i++;
 	}
 	if (stash[i] == '\n')
+	{
 		line[i] = stash[i];
-	line[i + 1] = '\0';
+		i++;
+	}
+	line[i] = '\0';
 	return (line);
 }
 
 char	*get_remainder(char *stash)
 {
 	int		i;
-	int		j;
 	char	*line;
 
 	i = 0;
-	j = 0;
 	if (!stash || stash[i] == '\0')
 		return (NULL);
 	while (stash[i] && stash[i] != '\n')
 		i++;
-	if (!stash[i])
-		return (NULL);
+	if (stash[i] == '\0')
+			return (NULL);
 	i++;
-	while (stash[i + j])
-		j++;
-	line = (char *)malloc(sizeof(char) * (j + 1));
-	if (!line)
-		return (NULL);
-	j = 0;
-	while (stash[i])
-		line[j++] = stash[i++];
-	line[j] = '\0';
+	line = ft_strdup(&stash[i]);
 	return (line);
 }
