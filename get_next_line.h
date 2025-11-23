@@ -23,7 +23,7 @@ char	*ft_strchr(const char *s, int c);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 
-char	*get_line1(char *stash);
+char	*get_nl(char *stash);
 
 char	*get_remainder(char *stash);
 
@@ -32,5 +32,7 @@ char	*free_stash(char **stash);
 char	*get_next_line(int fd);
 
 int		ft_strlen(const char *str);
+
+void	b_zero(void *s, size_t n);
 
 #endif
